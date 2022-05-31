@@ -22,7 +22,6 @@ const router = express.Router()
 router.post('/create', async (req, res) => {
   const client = res.locals.client
   const url = req.body.url
-  const shortUrl = process.env.SHORT_URL
   const query = 'INSERT INTO shorts(url) VALUES($1) RETURNING *'
 
   try {
@@ -33,7 +32,7 @@ router.post('/create', async (req, res) => {
       message: 'Success',
       short: {
         short_id: short.short_id,
-        short_url: shortUrl + '/r/' + short.short_id,
+        short_url: '/r/' + short.short_id,
         url: short.url,
         created: short.created
       }

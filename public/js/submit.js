@@ -29,7 +29,8 @@ $(document).ready(function () {
       data: data,
       dataType: 'json',
       success: function (res, status, xhr) {
-        const text = res.success ? res.short.short_url : res.message
+        const origin = location.origin
+        const text = res.success ? origin + res.short.short_url : res.message
         $('#submit-result').text(text)
       },
       error: function (xhr, status, error) {
