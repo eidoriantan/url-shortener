@@ -25,17 +25,16 @@ const redirect = require('./server/redirect')
 
 const port = process.env.PORT || 8082
 const app = express()
-const client = new Client({
-  user: process.env.DATABASE_USER,
-  host: process.env.DATABASE_HOST,
-  database: process.env.DATABASE_NAME,
-  password: process.env.DATABASE_PASS,
-  port: process.env.DATABASE_PORT,
-  ssl: {
-    rejectUnauthorized: false
-  }
-})
+const clientConfig = {
+  application_name: 'URL Shortener',
+  ssl: { rejectUnauthorized: false }
+}
 
+if (typeof process.env.DATABASE_URL === 'string') {
+  clientConfig.connectionString = process.env.DATABASE_URL
+}
+
+const client = new Client(clientConfig)
 client.connect()
 
 app.use(express.urlencoded({ extended: true }))
