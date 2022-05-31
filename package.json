@@ -5,9 +5,7 @@
   "description": "Simple URL shortening website",
   "keywords": [
     "url",
-    "shortener",
-    "react",
-    "reactjs"
+    "shortener"
   ],
   "homepage": "https://slnk.tk",
   "bugs": {
