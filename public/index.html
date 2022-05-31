@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="/js/submit.js"></script>
+
+  <title>URL Shortener</title>
+</head>
+
+<body>
+  <form action="/api/shorts/create" method="post" id="form-submit">
+    <div>
+      <label for="url">URL to shorten:</label>
+      <input type="url" name="url" id="url" value="" required>
+    </div>
+
+    <div id="submit-result"></div>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

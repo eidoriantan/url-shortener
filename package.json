@@ -1,0 +1,43 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple URL shortening website",
+  "keywords": [
+    "url",
+    "shortener",
+    "react",
+    "reactjs"
+  ],
+  "homepage": "https://slnk.tk",
+  "bugs": {
+    "url": "https://github.com/eidoriantan/url-shortener/issues"
+  },
+  "license": "GPL-3.0-only",
+  "author": {
+    "name": "Adriane Justine Tan",
+    "email": "eidoriantan@gmail.com",
+    "url": "https://eidoriantan.tk"
+  },
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eidoriantan/url-shortener.git"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "lint": "standard",
+    "postlint": "git log -1 --format=%B | commitlint",
+    "pretest": "npm run lint",
+    "test": "echo 'No tests configured'"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.1",
+    "@commitlint/config-conventional": "^17.0.0",
+    "standard": "^17.0.0"
+  }
+}
