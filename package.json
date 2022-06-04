@@ -34,7 +34,7 @@
     "pg": "^8.7.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.1",
+    "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "standard": "^17.0.0"
   }
