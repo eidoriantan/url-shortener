@@ -1,7 +1,7 @@
 
 CREATE OR REPLACE FUNCTION random_string(int) RETURNS text AS $$
   SELECT array_to_string(ARRAY(SELECT chr((97 + round(random() * 25)) :: integer)
-  FROM generate_series(1,15)), '');
+  FROM generate_series(1,$1)), '');
 $$ LANGUAGE SQL;
 
 CREATE OR REPLACE FUNCTION unique_short() RETURNS text AS $$
