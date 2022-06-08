@@ -38,6 +38,8 @@ const client = new Client(clientConfig)
 client.connect()
 
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 app.use('/', express.static('public'))
 app.use('/api/shorts', dbMiddleware(client), shorts)
 app.use('/r/', dbMiddleware(client), redirect)
