@@ -51,7 +51,7 @@ class SubmitForm extends React.Component {
     const action = form.action;
     const method = form.method;
     const formData = new FormData(form);
-    const data = {}
+    const data = {};
 
     buttons.forEach(element => {
       element.disabled = true;
