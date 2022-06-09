@@ -22,7 +22,7 @@ const router = express.Router()
 router.get('/:id', async (req, res) => {
   const client = res.locals.client
   const shortId = req.params.id
-  const referer = req.get('Referer')
+  const referer = req.get('Referer') || 'Unknown'
   const query = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
   const updateQuery = 'UPDATE shorts SET visits=$2 WHERE short_id=$1'
   const insertQuery = 'INSERT INTO referrers (short_id, referrer) VALUES ($1, $2)'
