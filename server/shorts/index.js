@@ -19,16 +19,16 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/:id', async (req, res) => {
+router.get('/:alias', async (req, res) => {
   const client = res.locals.client
-  const shortId = req.params.id
-  const searchQuery = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
-  const searchResult = await client.query(searchQuery, [shortId])
+  const alias = req.params.alias
+  const searchQuery = 'SELECT * FROM shorts WHERE alias=$1 LIMIT 1'
+  const searchResult = await client.query(searchQuery, [alias])
 
   if (searchResult.rows.length > 0) {
     const short = searchResult.rows[0]
-    const referrerQuery = 'SELECT referrer, COUNT(referrer) AS visits FROM referrers WHERE short_id=$1 GROUP BY referrer'
-    const referrerResult = await client.query(referrerQuery, [shortId])
+    const referrerQuery = 'SELECT referrer, COUNT(referrer) AS visits FROM referrers WHERE alias=$1 GROUP BY referrer'
+    const referrerResult = await client.query(referrerQuery, [alias])
     const referrers = referrerResult.rows.map(referrer => {
       return {
         name: referrer.referrer,
@@ -40,8 +40,8 @@ router.get('/:id', async (req, res) => {
       success: true,
       message: 'Success',
       short: {
-        short_id: short.short_id,
-        short_url: '/r/' + short.short_id,
+        alias: short.alias,
+        short_url: '/r/' + short.alias,
         url: short.url,
         created: short.created,
         visits: short.visits,
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
   const alias = req.body.alias
 
   const query = alias
-    ? 'INSERT INTO shorts(url, short_id) VALUES($1, $2) RETURNING *'
+    ? 'INSERT INTO shorts(url, alias) VALUES($1, $2) RETURNING *'
     : 'INSERT INTO shorts(url) VALUES($1) RETURNING *'
 
   const searchQuery = 'SELECT * FROM shorts WHERE url=$1 LIMIT 1'
@@ -73,8 +73,8 @@ router.post('/', async (req, res) => {
       success: false,
       message: 'URL was already registered.',
       short: {
-        short_id: short.short_id,
-        short_url: '/r/' + short.short_id,
+        alias: short.alias,
+        short_url: '/r/' + short.alias,
         url: short.url,
         created: short.created
       }
@@ -90,7 +90,7 @@ router.post('/', async (req, res) => {
       })
     }
 
-    const aliasQuery = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
+    const aliasQuery = 'SELECT * FROM shorts WHERE alias=$1 LIMIT 1'
     const aliasResult = await client.query(aliasQuery, [alias])
     if (aliasResult.rows.length > 0) {
       return res.json({
@@ -107,8 +107,8 @@ router.post('/', async (req, res) => {
       success: true,
       message: 'Success',
       short: {
-        short_id: short.short_id,
-        short_url: '/r/' + short.short_id,
+        alias: short.alias,
+        short_url: '/r/' + short.alias,
         url: short.url,
         created: short.created
       }

@@ -115,7 +115,7 @@ class StatisticsForm extends React.Component {
 
       result = (
         <div className="stats-results mt-2">
-          <h4 className="my-1">Traffic Statistics of "{ this.state.result.short_id }"</h4>
+          <h4 className="my-1">Traffic Statistics of "{ this.state.result.alias }"</h4>
           <div className="my-1">Total Visits: { visits }</div>
           <table className="stats-table">
             <thead>

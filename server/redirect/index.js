@@ -19,20 +19,20 @@
 const express = require('express')
 const router = express.Router()
 
-router.get('/:id', async (req, res) => {
+router.get('/:alias', async (req, res) => {
   const client = res.locals.client
-  const shortId = req.params.id
+  const alias = req.params.alias
   const referer = req.get('Referer') || 'Unknown'
-  const query = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
-  const updateQuery = 'UPDATE shorts SET visits=$2 WHERE short_id=$1'
-  const insertQuery = 'INSERT INTO referrers (short_id, referrer) VALUES ($1, $2)'
+  const query = 'SELECT * FROM shorts WHERE alias=$1 LIMIT 1'
+  const updateQuery = 'UPDATE shorts SET visits=$2 WHERE alias=$1'
+  const insertQuery = 'INSERT INTO referrers (alias, referrer) VALUES ($1, $2)'
 
   try {
-    const result = await client.query(query, [shortId])
+    const result = await client.query(query, [alias])
     const short = result.rows[0]
 
-    await client.query(updateQuery, [shortId, short.visits + 1])
-    await client.query(insertQuery, [shortId, referer])
+    await client.query(updateQuery, [alias, short.visits + 1])
+    await client.query(insertQuery, [alias, referer])
     res.redirect(short.url)
   } catch (error) {
     res.status(500).json({
