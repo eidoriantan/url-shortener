@@ -82,7 +82,7 @@ router.post('/', async (req, res) => {
   }
 
   if (alias) {
-    const regex = /^([a-zA-Z0-9\.-]+)$/
+    const regex = /^([a-zA-Z0-9.-]+)$/
     if (regex.exec(alias) === null) {
       return res.json({
         success: false,
