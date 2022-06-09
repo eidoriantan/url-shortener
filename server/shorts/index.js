@@ -19,6 +19,43 @@
 const express = require('express')
 const router = express.Router()
 
+router.get('/:id', async (req, res) => {
+  const client = res.locals.client
+  const shortId = req.params.id
+  const searchQuery = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
+  const searchResult = await client.query(searchQuery, [shortId])
+
+  if (searchResult.rows.length > 0) {
+    const short = searchResult.rows[0]
+    const refererQuery = 'SELECT DISTINCT referer, (SELECT COUNT(*) FROM referers) FROM referers WHERE short_id=$1'
+    const refererResult = await client.query(refererQuery, [shortId])
+    const referers = refererResult.rows.map(referer => {
+      return {
+        name: referer.referer,
+        visits: parseInt(referer.count)
+      }
+    })
+
+    res.json({
+      success: true,
+      message: 'Success',
+      short: {
+        short_id: short.short_id,
+        short_url: '/r/' + short.short_id,
+        url: short.url,
+        created: short.created,
+        visits: short.vists,
+        referers: referers
+      }
+    })
+  } else {
+    res.json({
+      success: false,
+      message: 'Link was not found'
+    })
+  }
+})
+
 router.post('/', async (req, res) => {
   const client = res.locals.client
   const url = req.body.url
