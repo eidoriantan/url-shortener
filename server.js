@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+const path = require('path')
 const express = require('express')
 const cors = require('cors')
 const { Client } = require('pg')
@@ -45,6 +46,10 @@ app.use(express.json())
 app.use('/', express.static('build'))
 app.use('/api/shorts', dbMiddleware(client), shorts)
 app.use('/r/', dbMiddleware(client), redirect)
+app.use('/*', (req, res) => {
+  const indexPath = path.resolve(__dirname, 'build', 'index.html')
+  res.sendFile(indexPath)
+})
 
 const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
