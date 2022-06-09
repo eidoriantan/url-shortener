@@ -27,12 +27,12 @@ router.get('/:id', async (req, res) => {
 
   if (searchResult.rows.length > 0) {
     const short = searchResult.rows[0]
-    const referrerQuery = 'SELECT DISTINCT referrer, (SELECT COUNT(*) FROM referrers) FROM referrers WHERE short_id=$1'
+    const referrerQuery = 'SELECT referrer, COUNT(referrer) AS visits FROM referrers WHERE short_id=$1 GROUP BY referrer'
     const referrerResult = await client.query(referrerQuery, [shortId])
     const referrers = referrerResult.rows.map(referrer => {
       return {
         name: referrer.referrer,
-        visits: parseInt(referrer.count)
+        visits: parseInt(referrer.visits)
       }
     })
 
