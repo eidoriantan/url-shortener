@@ -44,7 +44,7 @@ router.get('/:id', async (req, res) => {
         short_url: '/r/' + short.short_id,
         url: short.url,
         created: short.created,
-        visits: short.vists,
+        visits: short.visits,
         referers: referers
       }
     })
