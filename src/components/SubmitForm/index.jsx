@@ -25,7 +25,7 @@ class SubmitForm extends React.Component {
   constructor (props) {
     super(props);
 
-    this.action = variables.apiRoot + '/api/shorts/create';
+    this.action = variables.apiRoot + '/api/shorts';
     this.state = {
       loading: false,
       error: false,

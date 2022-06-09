@@ -19,7 +19,7 @@
 const express = require('express')
 const router = express.Router()
 
-router.post('/create', async (req, res) => {
+router.post('/', async (req, res) => {
   const client = res.locals.client
   const url = req.body.url
   const alias = req.body.alias
