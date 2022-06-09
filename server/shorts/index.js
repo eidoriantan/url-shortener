@@ -82,6 +82,14 @@ router.post('/', async (req, res) => {
   }
 
   if (alias) {
+    const regex = /^([a-zA-Z0-9\.-]+)$/
+    if (regex.exec(alias) === null) {
+      return res.json({
+        success: false,
+        message: 'Alias is invalid. It should only contain alphanumeric, period (.), and hyphen (-).'
+      })
+    }
+
     const aliasQuery = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
     const aliasResult = await client.query(aliasQuery, [alias])
     if (aliasResult.rows.length > 0) {
