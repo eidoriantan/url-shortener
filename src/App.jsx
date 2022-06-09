@@ -31,6 +31,10 @@ class App extends React.Component {
               <img src="/images/logo.png" alt="URL Shortener Logo" width={42} height={42} />
               <span className="header-title">URL Shortener</span>
             </a>
+
+            <a href="https://github.com/eidoriantan/url-shortener">
+              <img src="/images/socials/github.png" alt="GitHub Mark Logo" width={32} height={32} />
+            </a>
           </nav>
         </header>
 
