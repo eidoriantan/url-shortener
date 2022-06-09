@@ -27,12 +27,12 @@ router.get('/:id', async (req, res) => {
 
   if (searchResult.rows.length > 0) {
     const short = searchResult.rows[0]
-    const refererQuery = 'SELECT DISTINCT referer, (SELECT COUNT(*) FROM referers) FROM referers WHERE short_id=$1'
-    const refererResult = await client.query(refererQuery, [shortId])
-    const referers = refererResult.rows.map(referer => {
+    const referrerQuery = 'SELECT DISTINCT referrer, (SELECT COUNT(*) FROM referrers) FROM referrers WHERE short_id=$1'
+    const referrerResult = await client.query(referrerQuery, [shortId])
+    const referrers = referrerResult.rows.map(referrer => {
       return {
-        name: referer.referer,
-        visits: parseInt(referer.count)
+        name: referrer.referrer,
+        visits: parseInt(referrer.count)
       }
     })
 
@@ -45,7 +45,7 @@ router.get('/:id', async (req, res) => {
         url: short.url,
         created: short.created,
         visits: short.visits,
-        referers: referers
+        referrers: referrers
       }
     })
   } else {

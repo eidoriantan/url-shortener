@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
   const referer = req.get('Referer')
   const query = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
   const updateQuery = 'UPDATE shorts SET visits=$2 WHERE short_id=$1'
-  const insertQuery = 'INSERT INTO referers (short_id, referer) VALUES ($1, $2)'
+  const insertQuery = 'INSERT INTO referrers (short_id, referrer) VALUES ($1, $2)'
 
   try {
     const result = await client.query(query, [shortId])
