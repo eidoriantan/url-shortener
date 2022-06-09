@@ -1,0 +1,56 @@
+/**
+ *  URL Shortener
+ *  Copyright (C) 2022, Adriane Justine Tan
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@use "sass:list";
+@import "../../styles/variables";
+
+.form-stats {
+  padding: 24px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+}
+
+.stats-error {
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  background-color: list.nth($error-color, 1);
+  border: 1px solid list.nth($error-color, 2);
+}
+
+.stats-results {
+  padding: 24px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+
+  .stats-table {
+    width: 100%;
+
+    tr:nth-of-type(odd) td {
+      background-color: $bg-disabled;
+    }
+
+    th, td {
+      padding: 0.5rem;
+      border-bottom: 1px solid $border-color;
+    }
+
+    th { font-weight: bold; }
+  }
+}

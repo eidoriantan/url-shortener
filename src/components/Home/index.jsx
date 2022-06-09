@@ -20,6 +20,7 @@ import React from 'react';
 
 import './styles.scss';
 import SubmitForm from '../SubmitForm';
+import StatisticsForm from '../StatisticsForm';
 
 class Home extends React.Component {
   render () {
@@ -37,8 +38,13 @@ class Home extends React.Component {
           <p>No accounts needed.</p>
         </section>
 
-        <section id="get-started">
+        <section>
           <SubmitForm />
+        </section>
+
+        <section>
+          <h2>Get statistics</h2>
+          <StatisticsForm />
         </section>
       </React.Fragment>
     );
