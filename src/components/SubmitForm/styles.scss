@@ -16,27 +16,29 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-$(document).ready(function () {
-  $('#form-submit').submit(function (event) {
-    event.preventDefault()
+@use "sass:list";
+@import "../../styles/variables";
 
-    const action = $(this).attr('action')
-    const method = $(this).attr('method')
-    const data = $(this).serialize()
+.form-submit {
+  padding: 24px;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+}
 
-    $.ajax(action, {
-      method: method,
-      data: data,
-      dataType: 'json',
-      success: function (res, status, xhr) {
-        const origin = location.origin
-        const text = res.success ? origin + res.short.short_url : res.message
-        $('#submit-result').text(text)
-      },
-      error: function (xhr, status, error) {
-        const res = JSON.parse(xhr.responseText)
-        $('#submit-result').text(res.message)
-      }
-    })
-  })
-})
+.submit-status {
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+}
+
+.submit-info a,
+.submit-error a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.submit-error {
+  background-color: list.nth($error-color, 1);
+  border: 1px solid list.nth($error-color, 2);
+}

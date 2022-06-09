@@ -22,10 +22,41 @@ const router = express.Router()
 router.post('/create', async (req, res) => {
   const client = res.locals.client
   const url = req.body.url
-  const query = 'INSERT INTO shorts(url) VALUES($1) RETURNING *'
+  const alias = req.body.alias
+
+  const query = alias
+    ? 'INSERT INTO shorts(url, short_id) VALUES($1, $2) RETURNING *'
+    : 'INSERT INTO shorts(url) VALUES($1) RETURNING *'
+
+  const searchQuery = 'SELECT * FROM shorts WHERE url=$1 LIMIT 1'
+  const searchResult = await client.query(searchQuery, [url])
+  if (searchResult.rows.length > 0) {
+    const short = searchResult.rows[0]
+    return res.json({
+      success: false,
+      message: 'URL was already registered.',
+      short: {
+        short_id: short.short_id,
+        short_url: '/r/' + short.short_id,
+        url: short.url,
+        created: short.created
+      }
+    })
+  }
+
+  if (alias) {
+    const aliasQuery = 'SELECT * FROM shorts WHERE short_id=$1 LIMIT 1'
+    const aliasResult = await client.query(aliasQuery, [alias])
+    if (aliasResult.rows.length > 0) {
+      return res.json({
+        success: false,
+        message: 'Alias was already taken'
+      })
+    }
+  }
 
   try {
-    const result = await client.query(query, [url])
+    const result = await client.query(query, [url, alias])
     const short = result.rows[0]
     res.json({
       success: true,

@@ -2,23 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Adriane Justine Tan">
+  <meta name="description" content="Easily shorten your URLs for free in this website. No accounts needed.">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#2b5797">
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="/js/submit.js"></script>
+  <meta property="og:title" content="URL Shortener">
+  <meta property="og:site_name" content="URL Shortener">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="%PUBLIC_URL%/images/logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="URL Shortener Logo">
+  <meta property="og:url" content="%PUBLIC_URL%">
+  <meta property="og:description" content="Easily shorten your URLs for free in this website. No accounts needed.">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:site" content="@eidoriantan">
+  <meta property="twitter:creator" content="@eidoriantan">
+  <meta property="twitter:description" content="Easily shorten your URLs for free in this website. No accounts needed.">
+  <meta property="twitter:title" content="URL Shortener">
+  <meta property="twitter:image" content="%PUBLIC_URL%/images/logo.png">
+  <meta property="twitter:image:alt" content="URL Shortener Logo">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic">
 
   <title>URL Shortener</title>
 </head>
 
 <body>
-  <form action="/api/shorts/create" method="post" id="form-submit">
-    <div>
-      <label for="url">URL to shorten:</label>
-      <input type="url" name="url" id="url" value="" required>
-    </div>
-
-    <div id="submit-result"></div>
-    <button type="submit">Submit</button>
-  </form>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
 </body>
 </html>
