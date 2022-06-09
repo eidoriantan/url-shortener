@@ -17,6 +17,7 @@
  */
 
 const express = require('express')
+const cors = require('cors')
 const { Client } = require('pg')
 
 const dbMiddleware = require('./server/database')
@@ -37,6 +38,7 @@ if (typeof process.env.DATABASE_URL === 'string') {
 const client = new Client(clientConfig)
 client.connect()
 
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
