@@ -42,7 +42,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.use('/', express.static('public'))
+app.use('/', express.static('build'))
 app.use('/api/shorts', dbMiddleware(client), shorts)
 app.use('/r/', dbMiddleware(client), redirect)
 
