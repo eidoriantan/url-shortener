@@ -43,7 +43,7 @@ class App extends React.Component {
         </main>
 
         <footer>
-          Copyright &copy; 2022 <a href="https://eidoriantan.tk">Adriane Justine Tan</a>
+          Copyright &copy; 2022 <a href="https://eidoriantan.me">Adriane Justine Tan</a>
         </footer>
       </React.Fragment>
     );
