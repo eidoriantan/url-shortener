@@ -61,10 +61,6 @@ router.post('/', async (req, res) => {
   const url = req.body.url
   const alias = req.body.alias
 
-  const query = alias
-    ? 'INSERT INTO shorts(url, alias) VALUES($1, $2) RETURNING *'
-    : 'INSERT INTO shorts(url) VALUES($1) RETURNING *'
-
   const searchQuery = 'SELECT * FROM shorts WHERE url=$1 LIMIT 1'
   const searchResult = await client.query(searchQuery, [url])
   if (searchResult.rows.length > 0) {
@@ -101,7 +97,14 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const result = await client.query(query, [url, alias])
+    const query = alias
+      ? 'INSERT INTO shorts(url, alias) VALUES($1, $2) RETURNING *'
+      : 'INSERT INTO shorts(url) VALUES($1) RETURNING *'
+
+    const values = [url]
+    if (alias) values.push(alias)
+
+    const result = await client.query(query, values)
     const short = result.rows[0]
     res.json({
       success: true,
