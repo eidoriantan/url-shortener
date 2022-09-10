@@ -1,6 +1,5 @@
 
 # URL Shortener
-![GitHub deployments](https://img.shields.io/github/deployments/eidoriantan/url-shortener/eidoriantan-slnk?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/eidoriantan/url-shortener?style=flat-square)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
 
