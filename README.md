@@ -1,7 +1,7 @@
 
 # URL Shortener
 ![GitHub](https://img.shields.io/github/license/eidoriantan/url-shortener?style=flat-square)
-![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
+![Maintenance](https://img.shields.io/maintenance/yes/2023?style=flat-square)
 
 Easily shorten your URLs by using this tool. Reduce the length of long URLs into
 more nice and manageable links. You'll also be able to monitor traffic
